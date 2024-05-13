@@ -15,6 +15,7 @@ function showProjectList(){
 
 $(document).ready(function(){
   getWeather("Austin");
+  showPosts();
 })
 
 function getWeather(city) {
@@ -39,3 +40,59 @@ function getWeatherData() {
   getWeather(serach);
 }
 
+function firebaseSignIn() {
+  var provider = new firebase.auth.GoogleAuthProvider();
+
+  firebase.auth()
+  .signInWithPopup(provider)
+  .then((result) => {
+    /** @type {firebase.auth.OAuthCredential} */
+    var credential = result.credential;
+
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = credential.accessToken;
+    // The signed-in user info.
+    var user = result.user;
+    console.log(user.email);
+    // IdP data available in result.additionalUserInfo.profile.
+      // ...
+  }).catch((error) => {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+  });
+}
+
+function addMessageToDb(postTitle, postBody) {
+  $("#post-body").text("");
+  $("#post-title").text("");
+  var postData = {
+    title: postTitle,
+    body: postBody
+  }
+
+  var database = firebase.database().ref("posts");
+  var newPostRef = database.push();
+  newPostRef.set(postData);
+}
+
+function handleMessageSubmit(){
+  var postTitle = $("#post-title").val();
+  var postBody = $("#post-body").val();
+  addMessageToDb(postTitle, postBody);
+}
+
+function showPosts() {
+  return firebase.database().ref('posts').once('value').then((snapshot) => {
+    var posts = snapshot.val();
+    for(var postKey in posts) {
+      var post = posts[postKey];
+      $("#post-list").append("<div>"+post.title+"-"+post.body+"</div>")
+    }
+  });
+}

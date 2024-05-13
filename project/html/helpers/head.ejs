@@ -1,29 +1,58 @@
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <title>Base Web App</title>
-
 
 <!-- First we import our css files -->
 
 <!-- bootstrap css -->
-<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+/>
 
 <!-- Google font CSS -->
-<link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet">
+<link
+  href="https://fonts.googleapis.com/css?family=Poppins:400,700"
+  rel="stylesheet"
+/>
 
 <!-- this app's own css -->
-<link rel="stylesheet" type="text/css" href="css/main.css"/>
-
-
+<link rel="stylesheet" type="text/css" href="css/main.css" />
 
 <!-- Next import js files -->
 
 <!-- first we import jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<script>var apiKey="<%= process.env.API_KEY %>";</script>
+<script>
+  var apiKey = "<%= process.env.API_KEY %>";
+</script>
 
 <!-- then bootstrap -->
-<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script
+  type="text/javascript"
+  src="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+></script>
+
+<script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-database.js"></script>
+
+<script type="module">
+  const firebaseConfig = {
+    apiKey: "<%= process.env.FIREBASE_API_KEY %>",
+    authDomain: "chrome-courage-310808.firebaseapp.com",
+    databaseURL: "https://chrome-courage-310808-default-rtdb.firebaseio.com",
+    projectId: "chrome-courage-310808",
+    storageBucket: "chrome-courage-310808.appspot.com",
+    messagingSenderId: "932859935278",
+    appId: "1:932859935278:web:06b8e593133143aa11bdbf",
+    measurementId: "G-SR234BDPCV",
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
 
 <!-- then our app's own js file -->
 <script src="js/main.js"></script>
