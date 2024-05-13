@@ -21,6 +21,14 @@ app.get('/about', function(request, response) {
   response.render('pages/about');
 });
 
+app.get('/cities', function(request, response) {
+  response.render('pages/cities');
+});
+
+app.get('/temp', function(request, response) {
+  response.render('pages/temperature');
+});
+
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });

@@ -9,14 +9,15 @@
   <div class="page-header">
 
   
-    <h1>My Projects</h1>
+    <h1>City Project
+    </h1>
   </div>
 
-  <p>Click on the button to see the list of projects</p>
-
-  <button onClick="showProjectList()" class="btn btn-dark">Click me</button>
-
-  <div id="projects"></div>
+  <input class="search" type="text" placeholder="Enter City Name">
+  <button type="button" onClick="getWeatherData()">Search</button>
+  <div id="city"></div>
+  <div id="temp"></div>
+  <div id="error"></div>
   
 </body>
 
